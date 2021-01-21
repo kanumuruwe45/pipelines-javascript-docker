@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: kanumuruwepipelinesjavascriptdocker 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kanumuruwepipelinesjavascriptdocker
+  template:
+    metadata:
+      labels:
+        app: kanumuruwepipelinesjavascriptdocker 
+    spec:
+      containers:
+        - name: kanumuruwepipelinesjavascriptdocker 
+          image: kfelpetfhieduhmj.azurecr.io/kanumuruwepipelinesjavascriptdocker
+          ports:
+          - containerPort: 8080
