@@ -49,9 +49,9 @@ stages:
       displayName: Trivy Scan
       inputs:
         script: |
-         docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/Library/Caches:/root/.cache/ aquasec/trivy -f json -o results.json --exit-code 0 --severity MEDIUM,HIGH --ignore-unfixed $(containerRegistry)/$(imageRepository):$(tag) || true  
+         docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/Library/Caches:/root/.cache/ aquasec/trivy --exit-code 0 --severity MEDIUM,HIGH --ignore-unfixed $(containerRegistry)/$(imageRepository):$(tag) || true  
          
-         docker run --rm -v /var/run/docker.sock:/var/run/docker.sock  -v $HOME/Library/Caches:/root/.cache/ aquasec/trivy -f json -o results.json  --exit-code 0 --severity CRITICAL --ignore-unfixed  $(containerRegistry)/$(imageRepository):$(tag) || true 
+         docker run --rm -v /var/run/docker.sock:/var/run/docker.sock  -v $HOME/Library/Caches:/root/.cache/ aquasec/trivy  --exit-code 0 --severity CRITICAL --ignore-unfixed  $(containerRegistry)/$(imageRepository):$(tag) || true 
    
 #     - task: CopyFiles@2
 #       inputs:
