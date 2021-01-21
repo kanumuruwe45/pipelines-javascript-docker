@@ -82,7 +82,8 @@ stages:
       inputs:
         versionSpec: '3.6' 
     - script: python -m pip install bandit
-    - script: bandit -f json -o sast-result.json -r app.py || true
+    - script: bandit -f json -o sast-result.json -r app/ || true
+    
     - task: CopyFiles@2
       inputs:
         sourceFolder: '$(Build.SourcesDirectory)'
