@@ -53,15 +53,15 @@ stages:
          
          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock  -v $HOME/Library/Caches:/root/.cache/ aquasec/trivy  --exit-code 0 --severity CRITICAL --ignore-unfixed  $(containerRegistry)/$(imageRepository):$(tag) || true 
    
-#     - task: CopyFiles@2
-#       inputs:
-#         sourceFolder: '$(Build.SourcesDirectory)'
-#         contents: '*.json'
-#         targetFolder: $(Build.ArtifactStagingDirectory)
-#     - task: PublishBuildArtifacts@1
-#       inputs:
-#         pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#         artifactName: sast_results
+    - task: CopyFiles@2
+      inputs:
+        sourceFolder: '$(Build.SourcesDirectory)'
+        contents: '*.json'
+        targetFolder: $(Build.ArtifactStagingDirectory)
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        artifactName: trivy_results
         
     - task: UsePythonVersion@0
       inputs:
